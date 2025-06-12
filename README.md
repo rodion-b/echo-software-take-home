@@ -74,6 +74,24 @@ Your service must implement the following features:
     * `POST /v1/transactions`
 * **Security:** Ensure secure handling of the Fireblocks API key and secret. These should be configurable via environment variables and **never hardcoded or committed.**
 
+## 🔐 Fireblocks Authentication Guide
+
+To help you get started with Fireblocks API integration, here are the essentials:
+
+* **Authentication Credentials:** You will receive:
+    * An API key
+    * A private key in PEM format
+    * A test workspace URL
+    * These will be shared securely via our team once you begin the task
+
+* **Alternative Approach:**
+    * If you encounter blockers with Fireblocks authentication, you may implement a mock version of the Fireblocks API
+    * However, we strongly encourage attempting the real API integration first
+    * If you choose to mock, please document your mock implementation and the reasons for this decision
+    * Your mock should mirror the real API's response structures
+
+Remember: Don't hesitate to reach out via Slack if you need help with authentication setup. This is a common first question, and we're here to help you get started quickly.
+
 ## 💧 Obtaining Testnet Assets
 
 To fully test the wallet service functionality, you'll need testnet cryptocurrency assets in your Fireblocks vault accounts. These can be obtained from public testnet faucets.
