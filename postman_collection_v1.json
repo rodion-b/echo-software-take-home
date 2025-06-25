@@ -1,0 +1,72 @@
+{
+	"info": {
+		"_postman_id": "c124c0f5-e39a-4def-9737-93e744a08c87",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Wallet Balance",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/wallets/wallet1234/assets/assets1234/balance",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"wallets",
+						"wallet1234",
+						"assets",
+						"assets1234",
+						"balance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Wallet",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get Wallet Addresses",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Transaction",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "tb1qlnzkwu2gqnsey4rkklmmmmc46t360wlyfetsjw\n\n{\n  \"assetId\": \"TEST_BTC\",\n  \"amount\": \"0.001\",\n  \"sourceAddress\": \"bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh\",\n  \"destinationAddress\": \"bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh\",\n  \"note\": \"Test transfer\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "/wallets/10/transactions",
+					"path": [
+						"wallets",
+						"10",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

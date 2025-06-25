@@ -35,7 +35,7 @@ type InitiateTransferRequest struct {
 	DestinationAddress string `json:"destinationAddress"`
 	Note               string `json:"note"`
 }
-
+// Bug here Source: should be object, destination: should be object
 type InitiateTransferResponse struct {
 	TransactionID      string `json:"transactionId"`
 	Status             string `json:"status"`

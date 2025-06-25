@@ -11,49 +11,44 @@
 
 ## 🐳 Running with Docker Compose (Recommended)
 
-### 1. **Create and configure your .env file:**
+### 1. **Create and configure your .env file in your root**
 ```sh
 HOST=localhost
 PORT=8080
 SECRET_KEY_PATH=./private_key.pem
 API_KEY=your-apikey
 DB_HOST=localhost
-DB_PORT=5432
+DB_PORT=5433
 DB_NAME=walletsdb
 DB_USER=postgres
 DB_PASSWORD=postgres
 ```
 
-### 2. **(Optional) Place your Fireblocks private key:**
+### 2. **Place your Fireblocks private key:**
 - Save your PEM file as `private_key.pem` in the project root.
 
 ### 3. **Start up the database**
 ```sh
-docker-compose up --build
+docker-compose up postgres -d
+```
+
+### 4. **Run the application**
+```sh
+go run ./cmd/main.go
+```
+
+### 5. **Testing using postman**
+```
+postman_collection_v1.json is provided for testing
 ```
 
 
 - The API will be available at [http://localhost:8080](http://localhost:8080)
 - PostgreSQL will be available at `localhost:5433` (user: `postgres`, password: `postgres`)
 
----
+## Manual Testing is also possible as postman collection is por
 
-## 🏗️ Running Locally (without Docker)
-
-### 1. **Install dependencies:**
-```sh
-make deps
-```
-
-### 2. **Start Postgres** (if not using Docker):
-- Make sure your DB matches the credentials in `.env`.
-
-### 3. **Run the app:**
-```sh
-go run ./cmd/main.go
-```
-
----
+### Import postman_collection_v1.json
 
 ## 🧪 Running Tests
 
@@ -124,33 +119,12 @@ POST /wallets/{walletId}/transactions
 }
 ```
 
----
-
-## 🔧 Available Make Commands
-
-```sh
-make run              # Start with docker-compose
-make deps             # Install dependencies
-make test             # Run tests
-make test-coverage    # Run tests with coverage
-make test-verbose     # Run tests with verbose output
-make lint             # Run linter
-make mocks            # Generate mocks
-make regenerate-mocks # Regenerate all mocks
-```
-
 
 ## 🐛 Work in progress Items
 
-
 1. **"Error loading .env file"**
-   - Should be removed and just use docker for local testing
-
-2. **Local Postagress docker compose connection issues**
-   
-3. **Add more tests for handlers and client and service layers** 
-
-4. **Add end to end test**
-
+   - Should be removed and just use docker compose for local testing
+2. **Bug in transaction create needs source and destination as objects**
+3. **Add more tests and e2e** 
   
 

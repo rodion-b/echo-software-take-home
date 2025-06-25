@@ -45,8 +45,8 @@ func (s *Server) InitiateTransferHanlder(w http.ResponseWriter, r *http.Request)
 		req.DestinationAddress,
 	)
 	if err != nil {
-		log.Err(err).Msg("Failed to get inititate tansfer")
-		s.respondWithError(http.StatusBadRequest, "Failed to get inititate tansfer", ErrInternalServerError, w, r)
+		log.Err(err).Msg("Failed to tansfer")
+		s.respondWithError(http.StatusBadRequest, "Failed to tansfer", ErrInternalServerError, w, r)
 		return
 	}
 
