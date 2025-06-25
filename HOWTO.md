@@ -46,10 +46,6 @@ postman_collection_v1.json is provided for testing
 - The API will be available at [http://localhost:8080](http://localhost:8080)
 - PostgreSQL will be available at `localhost:5433` (user: `postgres`, password: `postgres`)
 
-## Manual Testing is also possible as postman collection is por
-
-### Import postman_collection_v1.json
-
 ## 🧪 Running Tests
 
 ### Run all tests:
