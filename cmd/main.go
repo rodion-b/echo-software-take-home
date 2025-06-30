@@ -36,7 +36,10 @@ func run() error {
 	}
 
 	// Initialize configuration
-	config := config.NewConfig()
+	config, err := config.NewConfig()
+	if err != nil {
+		return fmt.Errorf("Error initializing configuration: %v", err)
+	}
 
 	// Create a new Fireblocks client
 	fireClient, err := fireblocks.NewFireblocksClient(config)
