@@ -40,6 +40,9 @@ func NewConfig() (Config, error) {
 	}
 
 	baseURL := os.Getenv("BASE_URL")
+	if baseURL == "" {
+		return Config{}, errors.New("environment variable BASE_URL is required")
+	}
 
 	dbHost := os.Getenv("DB_HOST")
 	if dbHost == "" {
