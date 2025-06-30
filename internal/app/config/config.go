@@ -15,7 +15,7 @@ type Config struct {
 	DB_PORT         string
 }
 
-func NewConfig() *Config {
+func NewConfig() Config {
 	host := os.Getenv("HOST")
 	if host == "" {
 		host = "localhost"
@@ -31,7 +31,7 @@ func NewConfig() *Config {
 		baseURL = "https://api.fireblocks.io"
 	}
 
-	return &Config{
+	return Config{
 		HOST:            host + ":" + port,
 		PORT:            port,
 		SECRET_KEY_PATH: os.Getenv("SECRET_KEY_PATH"),

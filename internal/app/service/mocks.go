@@ -7,6 +7,7 @@ package service
 import (
 	context "context"
 	fireblocks "echo-software-take-home/internal/app/client/fireblocks"
+	domain "echo-software-take-home/internal/app/domain"
 	reflect "reflect"
 
 	gomock "github.com/golang/mock/gomock"
@@ -36,17 +37,17 @@ func (m *MockPgStorage) EXPECT() *MockPgStorageMockRecorder {
 }
 
 // SaveWallet mocks base method.
-func (m *MockPgStorage) SaveWallet(id, name, fireblocksVaultId string) error {
+func (m *MockPgStorage) SaveWallet(wallet *domain.Wallet) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "SaveWallet", id, name, fireblocksVaultId)
+	ret := m.ctrl.Call(m, "SaveWallet", wallet)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // SaveWallet indicates an expected call of SaveWallet.
-func (mr *MockPgStorageMockRecorder) SaveWallet(id, name, fireblocksVaultId interface{}) *gomock.Call {
+func (mr *MockPgStorageMockRecorder) SaveWallet(wallet interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SaveWallet", reflect.TypeOf((*MockPgStorage)(nil).SaveWallet), id, name, fireblocksVaultId)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SaveWallet", reflect.TypeOf((*MockPgStorage)(nil).SaveWallet), wallet)
 }
 
 // MockFireblocksClient is a mock of FireblocksClient interface.

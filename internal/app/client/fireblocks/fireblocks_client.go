@@ -23,7 +23,7 @@ type FireblocksClient struct {
 }
 
 // NewFireblocksClient creates a new Fireblocks client instance
-func NewFireblocksClient(config *config.Config) (*FireblocksClient, error) {
+func NewFireblocksClient(config config.Config) (*FireblocksClient, error) {
 	privateKeyBytes, err := os.ReadFile(config.SECRET_KEY_PATH)
 	if err != nil {
 		return nil, fmt.Errorf("error reading private key from %s: %w", config.SECRET_KEY_PATH, err)

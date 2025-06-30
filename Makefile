@@ -40,5 +40,5 @@ install-linter:
 	go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 
 # Run linter
-lint: install-linter
+lint:
 	golangci-lint run ./...

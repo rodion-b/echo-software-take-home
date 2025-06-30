@@ -2,9 +2,10 @@ package pg
 
 import (
 	"echo-software-take-home/internal/app/config"
+	"echo-software-take-home/internal/app/domain"
 	"fmt"
-	"log"
 
+	"github.com/rs/zerolog/log"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -13,7 +14,7 @@ type PgStorage struct {
 	db *gorm.DB
 }
 
-func NewPgStorage(config *config.Config) (*PgStorage, error) {
+func NewPgStorage(config config.Config) (*PgStorage, error) {
 	dsn := fmt.Sprintf(
 		"host=%s user=%s password=%s dbname=%s port=%s sslmode=disable TimeZone=UTC",
 		config.DB_HOST,
@@ -23,30 +24,28 @@ func NewPgStorage(config *config.Config) (*PgStorage, error) {
 		config.DB_PORT,
 	)
 
+	log.Info().Msg(fmt.Sprintf("Connecting to database with DSN: %s", dsn))
+
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		return nil, fmt.Errorf("failed to connect to database: %w", err)
 	}
 
-	if err := db.AutoMigrate(&Wallet{}); err != nil {
-		log.Fatal("Failed to migrate:", err)
+	if err := db.AutoMigrate(&domain.Wallet{}); err != nil {
+		log.Error().Msgf("Failed to migrate database: %v", err)
 		return nil, fmt.Errorf("failed to migrate database: %w", err)
 	}
+
 	return &PgStorage{
 		db: db,
 	}, nil
 }
 
-func (s *PgStorage) SaveWallet(id string, name string, fireblocksVaultId string) error {
-	wallet := Wallet{
-		ID:                id,
-		Name:              name,
-		FireblocksVaultID: fireblocksVaultId,
-	}
-	tx := s.db.Create(&wallet)
-
+func (s *PgStorage) SaveWallet(wallet *domain.Wallet) error {
+	tx := s.db.Create(wallet)
 	if tx.Error != nil {
 		return fmt.Errorf("failed to save new wallet: %w", tx.Error)
 	}
+
 	return nil
 }

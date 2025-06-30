@@ -45,14 +45,17 @@ func run() error {
 	}
 
 	// DEBUG ONLY: Get all vault accounts from Fireblocks
-	acccounts, err := fireClient.GetAccountsPaged(context.Background())
-	if err != nil {
-		return fmt.Errorf("Error getting accounts: %v", err)
-	}
-	fmt.Printf("%+v\n", acccounts)
+	// acccounts, err := fireClient.GetAccountsPaged(context.Background())
+	// if err != nil {
+	// 	return fmt.Errorf("Error getting accounts: %v", err)
+	// }
+	// fmt.Printf("%+v\n", acccounts)
 
 	// Init databse connection
 	db, err := pg.NewPgStorage(config)
+	if err != nil {
+		return fmt.Errorf("Error initializing database: %v", err)
+	}
 
 	// Create a Wallet Service here
 	walletService := service.NewWalletService(fireClient, db)

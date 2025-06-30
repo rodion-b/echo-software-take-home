@@ -1,9 +1,13 @@
 package domain
 
+import "time"
+
 type Wallet struct {
-	id      string
-	vaultId string
-	name    string
+	id        string    `gorm:"primaryKey"`
+	name      string    `gorm:"type:varchar(255);not null"`
+	vaultId   string    `gorm:"type:varchar(255);not null"`
+	createdAt time.Time `gorm:"autoCreateTime"`
+	updatedAt time.Time `gorm:"autoUpdateTime"`
 }
 
 func NewWallet(id, vaultId, name string) *Wallet {
@@ -24,4 +28,12 @@ func (w *Wallet) VaultID() string {
 
 func (w *Wallet) Name() string {
 	return w.name
+}
+
+func (w *Wallet) CreatedAt() time.Time {
+	return w.createdAt
+}
+
+func (w *Wallet) UpdatedAt() time.Time {
+	return w.updatedAt
 }

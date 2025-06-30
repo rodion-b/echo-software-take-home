@@ -16,10 +16,10 @@ func (s *WalletService) GetWalletBalance(
 	}
 	// Validate the response
 	if resp.ID == "" {
-		return nil, ErrEmptyVaultAccountID
+		return nil, domain.ErrEmptyVaultAccountID
 	}
 	if resp.Total == "" {
-		return nil, ErrEmptyAssetBalanceTotal
+		return nil, domain.ErrEmptyAssetBalanceTotal
 	}
 
 	// Create a new Asset domain object

@@ -3,10 +3,11 @@ package service
 import (
 	"context"
 	"echo-software-take-home/internal/app/client/fireblocks"
+	"echo-software-take-home/internal/app/domain"
 )
 
 type PgStorage interface {
-	SaveWallet(id string, name string, fireblocksVaultId string) error
+	SaveWallet(wallet *domain.Wallet) error
 }
 
 type FireblocksClient interface {

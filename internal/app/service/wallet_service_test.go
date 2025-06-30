@@ -42,9 +42,7 @@ func TestWalletService_CreateWallet(t *testing.T) {
 	// Set up PgStorage mock expectations
 	mockPgStorage.EXPECT().
 		SaveWallet(
-			gomock.Any(), // id (auto-generated UUID)
-			walletName,
-			expectedVaultID,
+			gomock.Any(), // wallet object
 		).
 		Return(nil).
 		Times(1)

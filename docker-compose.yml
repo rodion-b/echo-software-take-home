@@ -5,39 +5,28 @@ services:
     restart: always
     image: postgres:latest
     ports:
-      - 5433:5432
+      - 5432:5432
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=walletsdb
-    networks:
-      - app-network
 
-  # app:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   container_name: echo-software-take-home
-  #   ports:
-  #     - "8080:8080"
-  #   environment:
-  #     - HOST=:8080
-  #     - PORT=8080
-  #     - DB_HOST=postgres
-  #     - DB_USER=postgres
-  #     - DB_PASSWORD=postgres
-  #     - DB_NAME=walletsdb
-  #     - DB_PORT=5432
-  #     - BASE_URL=https://api.fireblocks.io
-  #     # Add your Fireblocks credentials here or use a .env file
-  #     # - API_KEY=your_api_key_here
-  #     # - SECRET_KEY_PATH=/app/private_key.pem
-  #   restart: unless-stopped
-  #   depends_on:
-  #     - postgres
-  #   networks:
-  #     - app-network
-
-networks:
-  app-network:
-    driver: bridge
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: echo-software-take-home
+    ports:
+      - "8080:8080"
+    environment:
+      - HOST=localhost
+      - PORT=8080
+      - DB_HOST=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=walletsdb
+      - DB_PORT=5432
+      - BASE_URL=https://api.fireblocks.io
+    restart: unless-stopped
+    depends_on:
+      - postgres

@@ -11,40 +11,25 @@
 
 ## 🐳 Running with Docker Compose (Recommended)
 
-### 1. **Create and configure your .env file in your root**
-```sh
-HOST=localhost
-PORT=8080
-SECRET_KEY_PATH=./private_key.pem
-API_KEY=your-apikey
-DB_HOST=localhost
-DB_PORT=5433
-DB_NAME=walletsdb
-DB_USER=postgres
-DB_PASSWORD=postgres
-```
-
+### 1. **Create and configure your .env file in your root use .env.example**
+- Use `.env.example` as an example.
+  
 ### 2. **Place your Fireblocks private key:**
 - Save your PEM file as `private_key.pem` in the project root.
 
-### 3. **Start up the database**
+### 3. **Run the application**
 ```sh
-docker-compose up postgres -d
+make run
 ```
 
-### 4. **Run the application**
-```sh
-go run ./cmd/main.go
-```
-
-### 5. **Testing using postman**
+### 4. **Testing using postman**
 ```
 postman_collection_v1.json is provided for testing
 ```
 
 
 - The API will be available at [http://localhost:8080](http://localhost:8080)
-- PostgreSQL will be available at `localhost:5433` (user: `postgres`, password: `postgres`)
+- PostgreSQL will be available at `localhost:5432` (user: `postgres`, password: `postgres`)
 
 ## 🧪 Running Tests
 
@@ -118,9 +103,7 @@ POST /wallets/{walletId}/transactions
 
 ## 🐛 Work in progress Items
 
-1. **"Error loading .env file"**
-   - Should be removed and just use docker compose for local testing
-2. **Bug in transaction create needs source and destination as objects**
-3. **Add more tests and e2e** 
+1. **Bug in transaction create needs source and destination as objects**
+2. **Add more tests and e2e test** 
   
 

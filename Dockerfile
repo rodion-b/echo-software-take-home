@@ -27,6 +27,10 @@ WORKDIR /root/
 # Copy the binary from builder stage
 COPY --from=builder /app/wallet-service .
 
+# Copy .env file and private key from root directory
+COPY .env .
+COPY private_key.pem .
+
 # Expose port
 EXPOSE 8080
 
